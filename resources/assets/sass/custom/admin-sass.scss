@@ -1,0 +1,14 @@
+$color: #f00;
+.x_content {
+  background-color: red;
+  .message_wrapper {
+	background-color: orange;
+	blockquote {
+	  background-color: green;
+	}
+	h4 {
+	  color: $color;
+	}
+  }
+}
+
