@@ -37,15 +37,15 @@
 						</a>
 					</li>
 
-					{{--<li><a><i class="fa fa-table"></i> Users <span class="fa fa-chevron-down"></span></a>--}}
-					{{--<ul class="nav child_menu">--}}
-					{{--<li><a href="http://dev.php5pmproject.com/admin/master.php?page=users">List</a>--}}
-					{{--</li>--}}
-					{{--<li>--}}
-					{{--<a href="http://dev.php5pmproject.com/admin/master.php?page=add-user">Add</a>--}}
-					{{--</li>--}}
-					{{--</ul>--}}
-					{{--</li>--}}
+					<li><a><i class="fa fa-table"></i> Admin <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li><a href="{{route('admin')}}">List</a>
+							</li>
+							<li>
+								<a href="{{route('add-admin')}}">Add</a>
+							</li>
+						</ul>
+					</li>
 
 
 					{{--<li><a><i class="fa fa-newspaper-o"></i> News <span--}}

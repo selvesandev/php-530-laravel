@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="images/favicon.ico" type="image/ico"/>
 
-	<title>Dashboard</title>
+	<title>@yield('title')</title>
 
 	<link rel="stylesheet" href="{{URL::to('lib/bootstrap/css/bootstrap.min.css')}}">
 	<!-- Font Awesome -->
