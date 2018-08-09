@@ -11,6 +11,7 @@ class AdminController extends Controller
 {
 	private $_app = 'Backend';
 	private $_page;
+	private $_data = [];
 
 	public function __construct()
 	{
@@ -20,7 +21,8 @@ class AdminController extends Controller
 
 	public function index()
 	{
-		return view($this->_page . 'admin.index');
+		$this->_data['admins'] = Admin::paginate(5);
+		return view($this->_page . 'admin.index', $this->_data);
 	}
 
 	public function add()
@@ -64,5 +66,47 @@ class AdminController extends Controller
 			return redirect()->route('admin')->with('success', 'Admin was added');
 		}
 		return redirect()->back()->with('error', 'There was a problem');
+	}
+
+	/**
+	 * Delete the admin with it's image
+	 * @param $id
+	 * @return \Illuminate\Http\RedirectResponse
+	 */
+	public function delete($id)
+	{
+		$id = (int)$id;
+		$admin = Admin::find($id);
+		if ($admin->image) {
+			if (file_exists(public_path('/img/admin/' . $admin->image)) && unlink(public_path('/img/admin/' . $admin->image))) {
+				$admin->delete();
+				return redirect()->route('admin')->with('success', 'Admin was removed');
+			}
+		}
+		return redirect()->route('admin')->with('error', 'There was a problem');
+	}
+
+
+	public function updateStatus(Request $request)
+	{
+		$id = (int)$request->id;
+		$actionType = $request->btnstatus;
+		$adminModel = Admin::where(['id' => $id]);
+
+		switch ($actionType) {
+			case 'enable':
+				$data['status'] = 1;
+				break;
+			case 'disable':
+				$data['status'] = 0;
+				break;
+			default:
+				return redirect()->back()->with('error', 'There was a problem');
+		}
+
+		$adminModel->update($data);
+
+		return redirect()->back()->with('success', 'Status updated');
+
 	}
 }
