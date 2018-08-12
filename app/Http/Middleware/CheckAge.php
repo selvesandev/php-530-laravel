@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
+class CheckAge
+{
+	/**
+	 * Handle an incoming request.
+	 *
+	 * @param  \Illuminate\Http\Request $request
+	 * @param  \Closure $next
+	 * @return mixed
+	 */
+	public function handle($request, Closure $next)
+	{
+		if ($request->age > 16 && $request->age < 40) {
+			return $next($request);
+		}
+		abort(404);
+	}
+
+}
+

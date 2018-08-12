@@ -16,7 +16,6 @@ class AdminAuthController extends Controller
 
 	public function loginAction(Request $request)
 	{
-
 		$data['email'] = $request->email;
 		$data['password'] = $request->password;
 
@@ -33,6 +32,7 @@ class AdminAuthController extends Controller
 
 	public function logout()
 	{
-
+		Auth::guard('admin')->logout();
+		return redirect()->route('admin-auth');
 	}
 }

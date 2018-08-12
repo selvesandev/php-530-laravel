@@ -25,6 +25,8 @@
 	<link href="{{URL::to('/css/customa.css')}}" rel="stylesheet">
 	{{--<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>--}}
 	{{--<script>tinymce.init({selector: '#details'});</script>--}}
+	@yield('headjs')
+
 </head>
 
 <body class="nav-md">

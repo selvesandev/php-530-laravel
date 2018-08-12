@@ -18,12 +18,12 @@ class AdminTableSeeder extends Seeder
 					'email' => 'james@gmail.com',
 					'image' => 'user.jpg'
 				],
-				[
-					'name' => 'john',
-					'password' => bcrypt('password'),
-					'email' => 'john@gmail.com',
-					'image' => 'user.jpg'
-				]
+//				[
+//					'name' => 'john',
+//					'password' => bcrypt('password'),
+//					'email' => 'john@gmail.com',
+//					'image' => 'user.jpg'
+//				]
 			]
 		);
 

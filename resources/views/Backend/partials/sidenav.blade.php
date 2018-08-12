@@ -17,8 +17,15 @@
 
 			<div class="profile_info">
 				<span>Welcome,</span>
-				<h2>John <br>
-					<small>Super Admin</small>
+				<h2>{{$loggedAdmin->name}} <br>
+					<small>
+
+						@if($loggedAdmin->privilege=='sa')
+							Super Admin
+						@else
+							Admin
+						@endif
+					</small>
 				</h2>
 			</div>
 		</div>
@@ -43,6 +50,17 @@
 							</li>
 							<li>
 								<a href="{{route('add-admin')}}">Add</a>
+							</li>
+						</ul>
+					</li>
+
+
+					<li><a><i class="fa fa-table"></i> News <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li><a href="{{route('news')}}">List</a>
+							</li>
+							<li>
+								<a href="{{route('news-add')}}">Add</a>
 							</li>
 						</ul>
 					</li>

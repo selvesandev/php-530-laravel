@@ -98,8 +98,20 @@ var AdminCustom = function () {
 	return AdminCustom;
 }();
 
-new AdminCustom();
-AdminCustom.helloFromAdmin();
+$(document).ready(function () {
+	$('#categorySelector').select2();
+	$('input[name=news_date]').daterangepicker({
+		timePicker: true,
+		singleDatePicker: true,
+		autoApply: false,
+		autoUpdateInput: true,
+		locale: {
+			format: 'YYYY-MM-DD HH:mm'
+		}
+	});
+
+	$('#news_keywords').tagsInput();
+});
 
 /***/ })
 
