@@ -23,7 +23,7 @@ class CreateNewsTable extends Migration
 			$table->string('image', 100);
 			$table->tinyInteger('priority')->default(0)->comment('0 is low 1 is high');
 			$table->text('keywords');
-			$table->integer('visits')->unsigned()->enullable();
+			$table->integer('visits')->unsigned()->nullable();
 			$table->integer('admin_id')->unsigned();
 			$table->foreign('admin_id')->references('id')->on('admins')->onUpdate('cascade')->onDelete('cascade');
 			$table->timestamps();

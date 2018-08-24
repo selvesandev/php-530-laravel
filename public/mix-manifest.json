@@ -2,5 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/customa.css": "/css/customa.css",
-    "/js/customa.js": "/js/customa.js"
+    "/js/vueapp.js": "/js/vueapp.js",
+    "/js/customa.js": "/js/customa.js",
+    "/css/vueapp.css": "/css/vueapp.css"
 }

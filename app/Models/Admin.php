@@ -15,4 +15,9 @@ class Admin extends Authenticatable
 		return strtoupper($value);
 	}
 
+	public function news()
+	{
+		return $this->hasMany('App\Models\News', 'admin_id', 'id');
+	}
+
 }

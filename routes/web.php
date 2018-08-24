@@ -1,5 +1,21 @@
 <?php
 
+use App\Models\User;
+
+Route::get('console', function () {
+	Artisan::call('down');
+});
+
+
+Route::get('/error', function () {
+	abort(403, 'Unauthenticated');
+});
+
+Route::get('/log', function () {
+	Log::info('test', ['id' => 2]);
+});
+
+
 Route::group(['namespace' => 'Frontend'], function () {
 	Route::get('/', 'AppController@home');
 	Route::get('/home', 'AppController@home')->name('home');
@@ -41,6 +57,7 @@ Route::group(['prefix' => Config::get('site.admin-dashboard'), 'namespace' => 'B
 			Route::get('list', 'NewsController@index')->name('news');
 			Route::get('/add', 'NewsController@add')->name('news-add');
 			Route::post('/add', 'NewsController@addAction');
+			Route::post('update-priority', 'NewsController@updatePriority')->name('update-priority');
 
 		});
 
@@ -56,3 +73,6 @@ Route::get('/dev/{age}', 'DevController@checkMiddleware')->middleware('checkage'
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('vuejs', 'HomeController@vue');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\BackendController;
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -19,13 +20,16 @@ class NewsController extends BackendController
 
 	public function index()
 	{
-		return view($this->_page . 'news.index');
+		$this->_data['news'] = News::all();
+
+		return view($this->_page . 'news.index', $this->_data);
 	}
 
 
 	public function add()
 	{
 		$categories = Category::all();
+
 		return view($this->_page . 'news.add', ['categories' => $categories]);
 	}
 
@@ -75,9 +79,25 @@ class NewsController extends BackendController
 				DB::table('news_categories')->insert(['news_id' => $lastInsertedId, 'category_id' => $category]);
 			}
 
-			return redirect()->to('news')->with('success', 'News was added');
+			return redirect()->route('news')->with('success', 'News was added');
 		}
-		return redirect()->to('news')->with('error', 'News add failed');
+		return redirect()->back()->with('error', 'News add failed');
+	}
+
+	public function updatePriority(Request $request)
+	{
+		$id = (int)$request->id;
+		if (!$id) return redirect()->back()->with('error', 'There was a problem');
+
+		$news = News::find($id);
+		if (!$news) return redirect()->back()->with('error', 'There was a problem');
+
+
+		News::where(['priority' => 1])->update(['priority' => 0]);
+
+		News::where(['id' => $id])->update(['priority' => 1]);
+
+		return redirect()->route('news')->with('success', 'Priority updated');
 
 	}
 }
